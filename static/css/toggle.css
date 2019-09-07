@@ -1,0 +1,165 @@
+/*
+Hi! If my code is useful for you can you donate me some money?
+https://www.paypal.me/melnik909
+*/
+
+.switch{
+  --uiSwitchSize: var(--switchSize, 64px);
+  --uiSwitchBgColor: var(--switchBgColor, #f1f1f1);
+  --uiSwitchBgColorActive: var(--switchBgColorActive, #1962d9);
+  --uiSwitchBorderColorActive: var(--switchBorderColorActive, #fff);
+  --uiSwitchBorderColorFocus: var(--switchBgColorFocus, #1962d9);
+  --uiSwitchButtonBgColor: var(--switchButtonBgColor, #fff);
+
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.switch__label{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.switch__toggle{
+  width: 0;
+  height: 0;
+  opacity: 0;
+
+
+  top: 0;
+  left: 0;
+}
+
+.switch__toggle:focus ~ .switch__label{
+  box-shadow: 0 0 0 var(--uiSwitchThickFocus, 4px) var(--uiSwitchBorderColorFocus);
+}
+
+.switch__toggle:checked:focus ~ .switch__label{
+  box-shadow: 0 0 0 var(--uiSwitchThickFocus, 4px) var(--uiSwitchBorderColorActive);
+}
+
+.switch__label:before, .switch__label:after{
+  content: "";
+  cursor: pointer;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.switch__label:before{
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: var(--uiSwitchBgColor);
+}
+
+.switch__label:after{
+  top: 50%;
+  z-index: 3;
+  transition: transform .4s cubic-bezier(0.44,-0.12, 0.07, 1.15);
+}
+
+/* type 1 */
+
+.switch_type1{
+  --uiSwitchBorderRadius: var(--switchBorderRadius, 60px);
+
+  width: var(--uiSwitchSize);
+  height: calc((var(--uiSwitchSize) / 2));
+  border-radius: var(--uiSwitchBorderRadius);
+  background-color: var(--uiSwitchBgColorActive);
+}
+
+.switch_type1 .switch__label{
+  border-radius: var(--uiSwitchBorderRadius);
+}
+
+.switch_type1 .switch__label:before{
+  border-radius: var(--uiSwitchBorderRadius);
+  transition: opacity .2s ease-out .1s, transform .2s ease-out .1s;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.switch_type1 .switch__toggle:checked ~ .switch__label:before{
+  transform: scale(0);
+  opacity: .7;
+}
+
+.switch_type1 .switch__label:after{
+  width: calc(var(--uiSwitchSize) / 2);
+  height: calc(var(--uiSwitchSize) / 2);
+  transform: translate3d(0, -50%, 0);
+
+  background-color: var(--uiSwitchButtonBgColor);
+  border-radius: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+}
+
+.switch_type1 .switch__toggle:checked ~ .switch__label:after{
+  transform: translate3d(100%, -50%, 0);
+}
+
+
+
+
+
+
+
+/*
+* demo page
+*/
+
+
+@media screen and (max-width: 767px){
+
+  html{
+    font-size: 50%;
+  }
+}
+
+body{
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+
+  color: #222;
+  background-color: #dfdfdf;
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+a{
+  text-decoration: none;
+  color: #222;
+}
+
+.page{
+  min-height: 100vh;
+
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.page__demo{
+  flex-grow: 1;
+
+}
+
+.main-container{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  max-width: 1400px;
+
+}
+
+.page__container{
+  margin: auto;
+
+  flex-direction: column;
+}
